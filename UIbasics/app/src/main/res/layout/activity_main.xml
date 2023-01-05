@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="100dp"
+    tools:context=".MainActivity">
+
+    <!-- TextView
+    - A section for displaying text
+    - Has to have layout_width and layout_height attributes for wrapping content
+    - text - attribute for displaying text
+    - layout_margin - attribute for making space between TextView and the edges of layout
+    * android:layout_margin="50dp"
+    * android:layout_marginLeft="150dp"
+    * android:layout_centerHorizontal="true"
+    * android:layout_centerHorizontal="true"
+    * android:layout_centerInParent="true"
+    - textSize - increases size of text
+    - textColor - for color of text, each color is defined in the color.xml file
+    * app\src\main\res\values\colors.xml
+    * use online color picker - android:textColor="@color/light_green"
+    - android:id="@+id/attrName"
+    -->
+    <TextView
+        android:id="@+id/textWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:text="Hello World!"
+        android:textColor="@color/light_green"
+        android:textSize="20sp"
+        android:textStyle="italic|bold" />
+
+    <!-- Button
+     - wrap_content - value passed on layout_width, it wraps every content within the button
+     - match_parent - value passed on layout_width, it fill all content within layout
+     * android:layout_width="wrap_content"
+     * android:layout_width="150dp"
+     - How we can move the Button below textView
+     * android:layout_below="@id/textWelcome"
+     * or android:layout_centerHorizontal="true"
+          android:layout_marginTop="400dp"
+     -->
+    <Button
+        android:id="@+id/helloButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:onClick="onButtonClick"
+        android:text="Button1" />
+
+    <Button
+        android:id="@+id/helloButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/helloButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="CLEAR" />
+
+    <!--
+     - hint - for grey text that can disappear whenever user inputs text
+     - gravity - for choosing where the text should be aligned
+     - setting fixed width for different screen sizes use padding
+     * include android:padding="_dp" in the opening tag of the layout
+     - padding - space between edges of the view and view's content
+     * or use manual margins
+           android:layout_marginLeft="100dp"
+           android:layout_marginRight="100dp"
+     - lines - for specifying the number of lines the user can enter
+     * android:lines="4"
+     - inputType - type of input from user
+     * android:inputType="date" or dateTime, none, number, numberDecimal, numberPassword,
+     numberSigned, phone, text, textAutoComplete, textAutoCorrect, ....
+     * android:inputType="numberSigned|numberDecimal|number"
+     * note: keyboard depends on the inputType
+     -
+     -->
+    <EditText
+        android:id="@+id/editTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:hint="Name"
+        android:autofillHints="name"
+        android:inputType="textPersonName|textAutoComplete"
+        android:textColor="@color/purple_700"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTxt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Hello Again"
+        android:textSize="20sp"
+        android:textStyle="bold"
+
+        />
+
+</RelativeLayout>

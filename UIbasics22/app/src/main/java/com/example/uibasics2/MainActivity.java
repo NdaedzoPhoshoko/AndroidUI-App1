@@ -14,24 +14,19 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RadioGroup maritalStatus;
-    private RadioButton rb1,rb2,rb3;
-    private ProgressBar pb1, pb2;
-    private Button load1;
-
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        rb1 = findViewById(R.id.rb1);
-        rb2 = findViewById(R.id.rb2);
-        rb3 = findViewById(R.id.rb3);
-        maritalStatus = findViewById(R.id.radioGroup1);
-        pb1 = findViewById(R.id.progressBar1);
-        pb2 = findViewById(R.id.progressBar2);
-        load1 = findViewById(R.id.loadButton1);
+        RadioButton rb1 = findViewById(R.id.rb1);
+        RadioButton rb2 = findViewById(R.id.rb2);
+        RadioButton rb3 = findViewById(R.id.rb3);
+        RadioGroup maritalStatus = findViewById(R.id.radioGroup1);
+        //pb1 = findViewById(R.id.progressBar1);
+        ProgressBar pb2 = findViewById(R.id.progressBar2);
+        Button load1 = findViewById(R.id.loadButton1);
 
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -44,13 +39,10 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Finished Loading", Toast.LENGTH_SHORT).show();
                     }*/
                     SystemClock.sleep(1000);// use Thread.sleep(4000); with try...catch() block
-
                 }
+                //pb2.setProgress(0); //set progress to zero, to prevent incrementing above 100 progress
             }
         });
-
-        thread.start(); //calls run in the Runnable interface
-
 
         int checkedButtonId = maritalStatus.getCheckedRadioButtonId(); //returns id of the button that is checked
         switch(checkedButtonId) //display the Toast of the checkedButton
@@ -92,15 +84,15 @@ public class MainActivity extends AppCompatActivity {
         load1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if(pb1.getVisibility()==View.VISIBLE) //if user clicks second time, then disappears
+                if(pb2.getVisibility()==View.VISIBLE) //if user clicks second time, then disappears
                 {
-                    pb1.setVisibility(View.GONE);  //pb1.setVisibility(View.INVISIBLE);
+                    pb2.setVisibility(View.INVISIBLE);  //pb1.setVisibility(View.GONE);
                     load1.setText("Load".toUpperCase());
                 }else //if user clicks first time then progressBar appears
                 {
-                    pb1.setVisibility(View.VISIBLE); //setting ProgressBar to appear
-                    load1.setText("stop".toUpperCase());
+                    thread.start(); //calls run in the Runnable interface
+                    pb2.setVisibility(View.VISIBLE); //setting ProgressBar to appear
+                    load1.setText("Stop".toUpperCase());
                 }
             }
         });
